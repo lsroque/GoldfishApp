@@ -11,30 +11,22 @@
         android:text="@string/sound_settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.417" />
+        app:layout_constraintVertical_bias="0.418" />
+
 
     <ToggleButton
         android:id="@+id/musicToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
-
-    <ToggleButton
-        android:id="@+id/audioToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musicToggle" />
 
     <TextView
         android:id="@+id/textView5"
@@ -47,16 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/audio"
-        app:layout_constraintEnd_toStartOf="@+id/audioToggle"
-        app:layout_constraintHorizontal_bias="0.74"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

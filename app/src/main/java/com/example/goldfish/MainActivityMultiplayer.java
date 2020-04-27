@@ -25,7 +25,7 @@ import java.util.List;
 
 public class MainActivityMultiplayer extends AppCompatActivity implements PauseGameFragment.PauseDialogListener {
 
-    private static final long START_TIME_IN_MILLIS = 6000;
+    private static final long START_TIME_IN_MILLIS = 300000;
     private TextView countDownText;
     private Button countDownButton;
 
