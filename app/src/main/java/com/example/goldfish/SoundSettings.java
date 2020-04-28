@@ -52,7 +52,7 @@ public class SoundSettings extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("musicToggle", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("musicToggle",isOnOff);
-        editor.commit();
+        editor.apply();
         Toast.makeText(this,"Game Setting saved!",Toast.LENGTH_SHORT).show();
     }
 

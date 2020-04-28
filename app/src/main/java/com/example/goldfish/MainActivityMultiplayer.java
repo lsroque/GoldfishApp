@@ -2,6 +2,7 @@ package com.example.goldfish;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
     private String timeUsed;
     private boolean timerRunning;
 
-    final int numCards = 16;
+    int numCards = 16;
     int numMatchedCards = 0, firstCardPosition, moveCount = 0;
     final List<Integer> cardImages = new ArrayList<>();
     int [] imageID = new int [ numCards];
@@ -43,6 +46,13 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
     ImageView imageView, firstCardView, secondCardView;
     boolean firstClick = false;
     Handler handler;
+    // DECLARE DIFFICULATY VARIABLE HERE
+    private RadioGroup radioGroupDifficulty;
+    private Button saveButtonD;
+    private RadioButton radioButtonDifficulty;
+    private RadioButton radioEasy;
+    private RadioButton radioMedium;
+    private RadioButton radioHard;
 
 
     @Override
@@ -61,6 +71,9 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
             }
         });
 
+        //adjustSettings();
+        //pass in difficulty from settings & change number of cards based on difficulty
+
         countDownText = findViewById(R.id.Start_countdown);
         countDownButton = findViewById(R.id.button_first_startgame);
         countDownButton.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +84,7 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
             }
         });
 
-        //adjustSettings(); // pass in difficulty from settings & change number of cards based on difficulty
+        adjustSettings(); // pass in difficulty from settings & change number of cards based on difficulty
         loadImagesAndCards();
 
         cardDisplayView = findViewById(R.id.grid_view);
@@ -83,6 +96,25 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
         playGame();
 
     }
+
+//     PLEASE EDIT THIS
+
+    public void adjustSettings() {
+        SharedPreferences sharedPreferences = getSharedPreferences("diffData", MODE_PRIVATE);
+        int value = sharedPreferences.getInt("checkedRadioButtonId",0); // value has the value of that in sharedPrefs
+
+        if (value==R.id.radioHard) { // hard, shows 4 x 4 card array on the game play screen
+            numCards = 16;
+        }
+        else if (value==R.id.radioMedium) {  // medium, 3 x 4 card array
+            numCards = 12;
+        }
+
+        else { // easy, 2 x 4 card array
+            numCards = 8;
+        }
+    }
+
 
     public String getMyData() {
 
