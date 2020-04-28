@@ -46,13 +46,13 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
     ImageView imageView, firstCardView, secondCardView;
     boolean firstClick = false;
     Handler handler;
-    // DECLARE DIFFICULATY VARIABLE HERE
-    private RadioGroup radioGroupDifficulty;
-    private Button saveButtonD;
-    private RadioButton radioButtonDifficulty;
-    private RadioButton radioEasy;
-    private RadioButton radioMedium;
+
+    // DECLARE DIFFICULTY VARIABLE HERE
     private RadioButton radioHard;
+    private RadioButton radioMedium;
+    private RadioButton radioEasy;
+
+
 
 
     @Override
@@ -97,8 +97,8 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
 
     }
 
-//     PLEASE EDIT THIS
-
+    // Use shared preferences to gather data from difficulty level settings
+    // and pass value to adjust settings for gameplay
     public void adjustSettings() {
         SharedPreferences sharedPreferences = getSharedPreferences("diffData", MODE_PRIVATE);
         int value = sharedPreferences.getInt("checkedRadioButtonId",0); // value has the value of that in sharedPrefs
@@ -112,6 +112,36 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
 
         else { // easy, 2 x 4 card array
             numCards = 8;
+        }
+    }
+
+    public void bestTime() {
+        SharedPreferences sharedPreferences = getSharedPreferences("diffData", MODE_PRIVATE);
+        int value = sharedPreferences.getInt("checkedRadioButtonId",0);
+
+        SharedPreferences sharedPreferences1 = this.getSharedPreferences("gameTimes",MODE_PRIVATE);
+        int newTime = sharedPreferences1.getInt("newTime", 0); //get newTime value, 0 is the default
+        int HardBestTime = sharedPreferences1.getInt("hardBestTime",0);
+
+        TextView hardBestTime = (TextView) findViewById(R.id.hardBestTime);
+
+        if (value == R.id.radioHard){
+            if (newTime < HardBestTime) {
+                String newT= getMyData();
+                newT = "Hard:" + newT;
+                hardBestTime.setText(newT);
+
+                //save
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("hardBestTime", newTime);
+                editor.apply();
+            }
+
+            else {
+                hardBestTime.setText("Hard" + HardBestTime);
+                // nothing is saved
+            }
+
         }
     }
 
@@ -198,6 +228,12 @@ public class MainActivityMultiplayer extends AppCompatActivity implements PauseG
             WinLoseFragment dialog = new WinLoseFragment();
             dialog.show(manager, "MessageDialog");
         }
+
+        // Setting preferences, use for best time
+        SharedPreferences sharedPreferences = this.getSharedPreferences("gameTimes",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("newTime",(int)timeLeftMilliseconds);
+
 
     }
 

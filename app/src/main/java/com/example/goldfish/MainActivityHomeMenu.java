@@ -10,6 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,10 @@ public class MainActivityHomeMenu extends AppCompatActivity {
 
     public static MediaPlayer mediaPlayer;
     private ToggleButton musicToggle;
+    private RadioButton radioHard;
+    private RadioButton radioMedium;
+    private RadioButton radioEasy;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,7 @@ public class MainActivityHomeMenu extends AppCompatActivity {
             mediaPlayer.start();
         }
 
-        // change 'Settings.class' to 'PlayGame.class'
+
         Button MasterStart = (Button)findViewById(R.id.MasterStart);
         MasterStart.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -55,6 +62,12 @@ public class MainActivityHomeMenu extends AppCompatActivity {
             }
         });
     }
+
+    // Show Result -> best time!
+
+    // Not sure where to put this, need to save stuff and call it in the home menu
+
+
 
     // these two are for the home button and main menu button on the phone. Can keep it if you want
     @Override
